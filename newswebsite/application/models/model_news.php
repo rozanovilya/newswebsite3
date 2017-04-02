@@ -1,5 +1,6 @@
 <?php
 require_once ("model_rubric.php");  
+require_once ("model_comment.php");  
 class News extends Model
 {
 	private $NewsId;
@@ -14,6 +15,7 @@ class News extends Model
 	private $NewsAuthorId;
 	private $oNewsAuthor;
 	private $oNewsRubric;
+	private $oComments;
 
 	protected static $table ='News';
 	protected static $id = 'NewsId';
@@ -160,7 +162,23 @@ class News extends Model
 	{
 		return $this->oNewsRubric;
 	}
-	
+	function setoComments($oComments)
+	{
+		$this->oComments = $oComments;
+	}
+		function getoComments()
+	{
+		$Class = 'Comment';
+		$table = 'Comments';
+		$idname ='NewsId';
+		$query = self::$oDbConnection->prepare("SELECT * FROM $table WHERE $idname=:id ORDER BY 'CommentDate'");
+			$query->execute(['id'=>$this->NewsId]);
+			$res = $query->fetchAll(PDO::FETCH_CLASS, "Comment");
+		//var_dump($res);
+		//return ($res) ? new $Class($res) : null;
+		return $res;
+		//return new $Class($res);
+	}
 
 
 }

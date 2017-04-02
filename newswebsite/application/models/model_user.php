@@ -1,4 +1,6 @@
 <?php
+require_once ("model_news.php"); 
+require_once ("model_comment.php"); 
 class User extends Model
 {
 	private $UserId;

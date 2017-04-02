@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 02 2017 г., 11:26
+-- Время создания: Апр 02 2017 г., 16:23
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -34,6 +34,14 @@ CREATE TABLE `Comments` (
   `CommentText` text NOT NULL,
   `Moderated` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `Comments`
+--
+
+INSERT INTO `Comments` (`CommentId`, `NewsId`, `CommentDate`, `CommentAuthorId`, `CommentText`, `Moderated`) VALUES
+(1, 1, '2017-04-02', 1, 'Интересная новость. Автор прав', 1),
+(2, 1, '2017-04-01', 1, 'Очень содержательный комментарий', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +154,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT для таблицы `Comments`
 --
 ALTER TABLE `Comments`
-  MODIFY `CommentId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CommentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `News`
 --

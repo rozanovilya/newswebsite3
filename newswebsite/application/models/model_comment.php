@@ -1,11 +1,12 @@
 <?php
+require_once ("model_user.php"); 
 class Comment extends Model
 {
 	private $NewsId;
 	private $CommentId;
 	private $CommentDate;
 	private $CommentAuthorId;
-	public $oCommentAuthor;
+	private $oCommentAuthor;
 	private $CommentText;
 	private $Moderated;
 
@@ -71,7 +72,7 @@ class Comment extends Model
 	}
 	function getoCommentAuthor()
 	{
-		if ($this->oCommentAuthor){
+		//if ($this->oCommentAuthor){
 			//get the object from the database
 			$Class = 'User';
 			$table = 'Users';
@@ -80,7 +81,9 @@ class Comment extends Model
 			$query->execute(['id'=>$this->CommentAuthorId]);
 			$res = $query->fetch(PDO::FETCH_ASSOC);
 			return ($res) ? new $Class($res) : null;
-		}
+			//var_dump($res);
+			//return $res;	
+		//}
 	}
 	function setCommentText($CommentText)
 	{
