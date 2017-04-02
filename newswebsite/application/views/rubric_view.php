@@ -9,4 +9,4 @@ $newsarray = $data->oNews;
 		echo "<p>$news->SeoDescription<p>";
 	}
 
-var_dump($data->oNews);
+//var_dump($data->oNews);
