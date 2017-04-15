@@ -14,11 +14,12 @@ class User extends Model
 	public $oComments = array();
 
 	protected static $table ='Users';
-	protected static $id = 'UserId';
+	protected static $id = 'UserName';
 
 	static function saveModel($obj)
 	{
-		$isSaved = parent::isSaved($obj->UserId);
+		$isSaved = parent::isSaved($obj->UserName);
+		$table = User::$table;
 		if ($isSaved){
 			$query = self::$oDbConnection->prepare("UPDATE $table 
 				SET UserId=:UserId,UserName=:UserName,PasswordHash=:PasswordHash,Administrator=:Administrator,Journalist=:Journalist,Editor=:Editor,Moderator=:Moderator

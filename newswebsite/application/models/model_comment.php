@@ -1,5 +1,6 @@
 <?php
 require_once ("model_user.php"); 
+
 class Comment extends Model
 {
 	private $NewsId;
@@ -16,6 +17,7 @@ class Comment extends Model
 		static function saveModel($obj)
 	{
 		$isSaved = parent::isSaved($obj->CommentId);
+		$table = Comment::$table;
 		if ($isSaved){
 			$query = self::$oDbConnection->prepare("UPDATE $table 
 				SET NewsId=:NewsId, CommentId=:CommentId,CommentDate=:CommentDate,CommentAuthorId=:CommentAuthorId,CommentText=:CommentText,Moderated=:Moderated
@@ -58,13 +60,13 @@ class Comment extends Model
 	{
 		return $this->CommentDate;
 	}
-	function setCCommentAuthorId($CommentAuthor)
+	function setCommentAuthorId($CommentAuthorId)
 	{
-		$this->CommentAuthor = $CommentAuthor;
+		$this->CommentAuthorId = $CommentAuthorId;
 	}
-	function getCCommentAuthorId()
+	function getCommentAuthorId()
 	{
-		return $this->CommentAuthor;
+		return $this->CommentAuthorId;
 	}
 	function setoCommentAuthor($oCommentAuthor)
 	{

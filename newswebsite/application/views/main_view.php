@@ -1,3 +1,7 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
 <h1>Новостной сайт "Новости"</h1>
 <?php
 foreach ($data as $news) {
@@ -6,3 +10,5 @@ foreach ($data as $news) {
 	echo "<p>$news->SeoDescription</p>";
 }
 //var_dump($data);
+?>
+</body>

@@ -20,4 +20,5 @@ require_once 'core/controller.php';
 */
 
 require_once 'core/route.php';
+Model::$oDbConnection = new PDO('mysql:host=localhost;dbname=Newswebsite','root', '');
 Route::start(); // запускаем маршрутизатор

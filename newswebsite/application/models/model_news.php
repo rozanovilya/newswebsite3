@@ -23,6 +23,7 @@ class News extends Model
 	static function saveModel($obj)
 	{
 		$isSaved = parent::isSaved($obj->NewsId);
+		$table = News::$table;
 		if ($isSaved){
 			$query = self::$oDbConnection->prepare("UPDATE $table 
 				SET NewsId=:NewsId, NewsDate =:NewsDate, NewsRubric = :NewsRubric, SeoH1 = :SeoH1,SeoTitle =:SeoTitle,
