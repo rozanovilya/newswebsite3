@@ -27,7 +27,7 @@ class News extends Model
 		if ($isSaved){
 			$query = self::$oDbConnection->prepare("UPDATE $table 
 				SET NewsId=:NewsId, NewsDate =:NewsDate, NewsRubric = :NewsRubric, SeoH1 = :SeoH1,SeoTitle =:SeoTitle,
-					SeoDescription = :SeoDescription, PreviewPhoto = :PreviewPhoto, NewsText = :NewsText
+					SeoDescription = :SeoDescription, PreviewPhoto = :PreviewPhoto, NewsText = :NewsText,
 					NewsSource = :NewsSource, NewsAuthorId = :NewsAuthorId
 					WHERE NewsId = :NewsId");
 		}
