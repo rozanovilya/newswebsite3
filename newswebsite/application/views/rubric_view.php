@@ -8,9 +8,11 @@
 $newsarray = $data->oNews;
 	foreach($newsarray as $news)
 	{
+		echo "<div class='NewsItem'>";
 		$link='/news/'.$news->NewsId;
 		echo "<h2><a href=$link>$news->SeoH1</a></h2>";
 		echo "<p>$news->SeoDescription<p>";
+		echo "</div>";
 	}
 ?>
 </body>

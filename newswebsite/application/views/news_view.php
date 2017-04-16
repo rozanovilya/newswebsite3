@@ -9,9 +9,10 @@ $rubricname = $rubric->RubricName;
 $rubriclink = "/rubric/".$data->NewsRubric;
 //var_dump($rubrilink);
 ?>
-<?php echo "<p><a href= $rubriclink > $rubricname </a></p>"?> 
+
 <h1><?php echo $data->SeoH1?></h1>
-<p>Источник - <a href="<?php echo $data->NewsSource?>"><?php echo $data->NewsSource?></a></p>
+<?php echo "<p class='NewsRubric'>Другие новости из рубрики: <a href= $rubriclink > $rubricname </a></p>"?> 
+<p class='NewsSource'><a href="<?php echo $data->NewsSource?>">Источник</a></p>
 <?php echo $data->NewsText?>
 <?php 
 $comments = $data->oComments;

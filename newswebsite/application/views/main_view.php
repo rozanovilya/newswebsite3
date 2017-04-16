@@ -5,9 +5,11 @@
 <h1>Новостной сайт "Новости"</h1>
 <?php
 foreach ($data as $news) {
+	echo "<div class='NewsItem'>";
 	$link = '/news/'.$news->NewsId;
 	echo "<h2><a href=$link>$news->SeoH1</a></h2>";
 	echo "<p>$news->SeoDescription</p>";
+	echo "</div>";
 }
 //var_dump($data);
 ?>

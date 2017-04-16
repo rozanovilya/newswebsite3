@@ -1,2 +1,37 @@
-﻿
+﻿body{
+	background-color: #f2f2f2;
+}
+.menu li{
+	display: inline-block;
+	padding: 2px 8px;
+	background-color: #212121;
+	color: #ffffff;
+}
+.menu li a{
+	text-decoration: none;
+	color: #ffffff;
+}
+.menu li:hover{
+	background-color: #7d6242;
 
+}
+.NewsRubric{
+	border: 2px solid #7d6242;
+	color: #000000;
+}
+.NewsRubric a{
+	color: #000000;
+}
+.NewsSource a{
+	color:#b98c57;
+}
+.NewsItem{
+	outline: 3px solid #7d6242;
+}
+.NewsItem a{
+	color:#000000;
+	text-decoration: none;
+}
+.NewsItem a:hover{
+	color:#333333;
+}
