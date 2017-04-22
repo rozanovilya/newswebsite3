@@ -1,3 +1,6 @@
+<?php
+require_once("/../classes/class.PaginationLinks.php");
+?>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
@@ -5,7 +8,8 @@
 <h1><?php echo $data->RubricName?></h1>
 
 <?php
-$newsarray = $data->oNews;
+//var_dump($data);
+$newsarray = $data2;
 	foreach($newsarray as $news)
 	{
 		echo "<div class='NewsItem'>";
@@ -15,4 +19,9 @@ $newsarray = $data->oNews;
 		echo "</div>";
 	}
 ?>
+<div class='pagination'>
+<?php
+echo PaginationLinks::create($data3,$data4);
+?>
+</div>	
 </body>

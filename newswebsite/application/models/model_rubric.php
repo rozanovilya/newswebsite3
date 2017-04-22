@@ -26,6 +26,17 @@ class Rubric extends Model
 		$query->bindParam('RubricName',$obj->RubricName);
 		$query->execute();
 	}
+	static function countModel($obj)
+	{
+		$Class = get_called_class();
+		$table = 'News';
+		$query = self::$oDbConnection->prepare("SELECT count(*) AS Total FROM $table WHERE NewsRubric = :NewsRubric");
+		$query->bindParam('NewsRubric',$obj->RubricId);
+		$query->execute();
+		$res = $query->fetch(PDO::FETCH_ASSOC);
+		$total = $res['Total'];
+		return $total;
+	}
 
 	function setRubricId($RubricId)
 	{
@@ -47,15 +58,16 @@ class Rubric extends Model
 	{
 		$this->oNews = $oNews;
 	}
-	function getoNews()
+	function getoNews($start = 0, $items = 1)
 	{
 		//if ($this->oNews){
 		//get the array of objects from the database
 			$Class = 'News';
 			$table = 'News';
 			$idname ='NewsRubric';
-			$query = self::$oDbConnection->prepare("SELECT * FROM $table WHERE $idname=:id");
-			$query->execute(['id'=>$this->RubricId]);
+			$query = self::$oDbConnection->prepare("SELECT * FROM $table WHERE $idname=:id LIMIT $start ,$items");
+			$query->bindParam(':id',$this->RubricId);
+			$query->execute();
 			$res = $query->fetchAll(PDO::FETCH_CLASS, "News");
 			//return ($res) ? new $Class($res) : null;
 			return $res;				

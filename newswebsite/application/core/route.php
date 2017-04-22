@@ -28,6 +28,10 @@ class Route
 			$action_name = $routes[2];
 		}
 
+		$arr = explode("?", $controller_name, 2);
+		$controller_name = $arr[0];
+		if ($controller_name =='_' || $controller_name =='') $controller_name = 'Main';
+		//var_dump($controller_name);
 		// добавляем префиксы
 		$model_name = 'Model_'.$controller_name;
 		$controller_name = 'Controller_'.$controller_name;

@@ -1,3 +1,6 @@
+<?php
+require_once("/../classes/class.PaginationLinks.php");
+?>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
@@ -11,6 +14,10 @@ foreach ($data as $news) {
 	echo "<p>$news->SeoDescription</p>";
 	echo "</div>";
 }
-//var_dump($data);
 ?>
+<div class='pagination'>
+<?php
+echo PaginationLinks::create($data3,$data4);
+?>
+</div>
 </body>

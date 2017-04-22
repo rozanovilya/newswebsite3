@@ -13,7 +13,26 @@ class Controller_Rubric extends Controller
 		$data = $this->menu->getoRubrics(); //using oRubrics doesn't work for unknown reason!!!
 		//var_dump($data);
 		$this->view->generate('menu_view.php','template_view.php',$data);
+
+		if ($_GET["page"] !== null){
+			$page = $_GET["page"];
+		}
+		else {
+			$page = 1;
+		}
+		if ($page <0) $page = 1;
+
+		$items = 1; //number of news on the page
+		$start = $page * $items - $items;
+		$data3= $page;
+
 		$data = $this->model->getModel($id);
-		$this->view->generate('rubric_view.php', 'template_view.php',$data);
+		$count = $data->countModel($data);
+
+		$totalpages = ceil($count/$items);
+		$data4=$totalpages;  
+
+		$data2 = $data->getoNews($start,$items);
+		$this->view->generate('rubric_view.php', 'template_view.php',$data, $data2,$data3,$data4);
 	}
 }
