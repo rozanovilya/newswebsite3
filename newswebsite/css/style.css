@@ -46,3 +46,9 @@
 .pagination a:hover{
 	background-color: #ddd;
 }
+.newsphoto{
+	width:400px;
+}
+.newsitem img{
+	width:150px;
+}

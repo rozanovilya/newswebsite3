@@ -13,6 +13,10 @@ $rubriclink = "/rubric/".$data->NewsRubric;
 <h1><?php echo $data->SeoH1?></h1>
 <?php echo "<p class='NewsRubric'>Другие новости из рубрики: <a href= $rubriclink > $rubricname </a></p>"?> 
 <p class='NewsSource'><a href="<?php echo $data->NewsSource?>">Источник</a></p>
+<?php
+$imagelink="/images/".$data->PreviewPhoto;
+?>
+<img src="<?php echo $imagelink?>" alt="<?php echo $data->SeoH1?>" class='newsphoto'> <br>
 <?php echo $data->NewsText?>
 <?php 
 $comments = $data->oComments;

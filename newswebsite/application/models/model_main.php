@@ -12,7 +12,7 @@ class MainPage extends Model
 	function getoNews($start = 0, $items = 1)
 	{
 	//	if ($this->oNews){
-			$query = self::$oDbConnection->prepare("SELECT * FROM News ORDER BY NewsDate LIMIT $start ,$items");
+			$query = self::$oDbConnection->prepare("SELECT * FROM News ORDER BY NewsId DESC LIMIT $start ,$items");
 			$query->execute();
 			$res = $query->fetchAll(PDO::FETCH_CLASS, "News");
 			return $res;

@@ -65,7 +65,7 @@ class Rubric extends Model
 			$Class = 'News';
 			$table = 'News';
 			$idname ='NewsRubric';
-			$query = self::$oDbConnection->prepare("SELECT * FROM $table WHERE $idname=:id LIMIT $start ,$items");
+			$query = self::$oDbConnection->prepare("SELECT * FROM $table WHERE $idname=:id ORDER BY NewsId DESC LIMIT $start ,$items");
 			$query->bindParam(':id',$this->RubricId);
 			$query->execute();
 			$res = $query->fetchAll(PDO::FETCH_CLASS, "News");

@@ -36,6 +36,12 @@ class Controller_Adminnews extends Controller
 				if(!isset($_POST['NewsText'])){ 
 					$_POST['NewsText'] = $oNews->NewsText;
 				}
+				if(!isset($_POST['NewsSource'])){ 
+					$_POST['NewsSource'] = $oNews->NewsSource;
+				}
+				if(!isset($_POST['PreviewPhoto'])){ 
+					$_POST['PreviewPhoto'] = $oNews->PreviewPhoto;
+				}
 				//var_dump($_POST);
 
 			}
@@ -49,9 +55,33 @@ class Controller_Adminnews extends Controller
 		$oNews->SeoTitle = $_POST['SeoTitle'];
 		$oNews->SeoDescription = $_POST['SeoDescription'];
 		$oNews->NewsText = $_POST['NewsText'];
+		$oNews->NewsSource = $_POST['NewsSource'];
+		$oNews->PreviewPhoto = $_POST['PreviewPhoto'];
+
+		//saving file to server
+		//var_dump($_FILES);
+		$photo = $_FILES['PreviewPhoto'];
+		//if (isset( $_FILES['PreviewPhoto'])){
+		//	var_dump($_FILES['PreviewPhoto']);
+		//}
+		$photo['name'] = 'news'.$id.".jpg";
+
+		$photo['name']= substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 11).".jpg";
+		//var_dump($photo['name']);
+		$dir = 'images/';
+		$path = $dir.$photo['name'];
+
+
+
+		if (move_uploaded_file($photo['tmp_name'], $path)){
+			$oNews->PreviewPhoto = $photo['name'];
+		}	
+    		
+
+
 		//var_dump($oNews);
 		News::saveModel($oNews);
-
+		$_FILES = array();
 		$this->view->generate('adminnews_view.php','template_view.php',$data);
-	}
+		}
 }

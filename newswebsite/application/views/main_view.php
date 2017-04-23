@@ -12,6 +12,10 @@ foreach ($data as $news) {
 	$link = '/news/'.$news->NewsId;
 	echo "<h2><a href=$link>$news->SeoH1</a></h2>";
 	echo "<p>$news->SeoDescription</p>";
+	$imagelink="/images/".$news->PreviewPhoto;
+	?>
+	<img src="<?php echo $imagelink?>" alt="<?php echo $news->SeoH1?>"'>;
+	<?php
 	echo "</div>";
 }
 ?>

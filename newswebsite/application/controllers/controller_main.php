@@ -26,7 +26,7 @@ class Controller_Main extends Controller
 		}
 		if ($page <0) $page = 1;
 
-		$items = 1; //number of news on the page
+		$items = 5; //number of news on the page
 		$start = $page * $items - $items;  
 		$data3= $page;
 		$count = $this->model->countModel();
