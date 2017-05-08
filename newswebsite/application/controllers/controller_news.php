@@ -13,25 +13,36 @@ class Controller_News extends Controller
 	{
 
 		if ($_POST){
-			var_dump($_POST);
+			//var_dump($_POST);
 			$oComment = new Comment;
 			$oComment->CommentText = $_POST['commenttext'];
 			$oComment->NewsId = $id;
 			$oComment->CommentDate = Date(DATE_RFC822);
 			$username = $_POST['username'];
-			$passwordHash = password_hash($_POST['password'],PASSWORD_DEFAULT);
+			$passwordHash = crypt($_POST['password'], '$2a$07$rozanovilyausessomesillystringforsalt$'); //password_hash($_POST['password'],PASSWORD_DEFAULT);
 			$password = $_POST['password'];
 			$oUser = User::getModel($username);
-			$oComment->CommentAuthorId = $oUser->UserName;
+			//var_dump($oUser);
+			$data2 = null;
+			$oComment->CommentAuthorId = $oUser->UserId;
 			$oComment->Moderated = true;
-			if (password_verify($password,$oUser->PasswordHash)){ //doesn't work
+			if ($oUser == null) $data2 =  "Неправильный логин"; 
+			else
+			{
+				if (hash_equals($passwordHash,$oUser->PasswordHash)){ //doesn't work
 				Comment::saveModel($oComment); //saving anonymous comments works
-			}
-			else {
-				echo "Пароль неверный";
+				}
+				else {
+					$data2= "Пароль неверный";
+				}
 			}
 
 		}
+
+		unset($_POST['username']); //doesn't seem to help
+		unset($_POST['password']);
+		unset($_POST['commenttext']);
+		$_POST = array();
 
 		$data = $this->menu->getoRubrics(); //using oRubrics doesn't work for unknown reason!!!
 		//var_dump($data);
@@ -41,6 +52,6 @@ class Controller_News extends Controller
 
 		$data = $this->model->getModel($id);	
 		//var_dump($data);
-		$this->view->generate('news_view.php', 'template_view.php',$data);
+		$this->view->generate('news_view.php', 'template_view.php',$data,$data2);
 	}
 }

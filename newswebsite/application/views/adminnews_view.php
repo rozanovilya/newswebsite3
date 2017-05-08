@@ -41,8 +41,11 @@ Description<input type="text" name="SeoDescription" value="<?php echo $_POST['Se
 Текст новости<textarea type="text" name="NewsText" rows="20" cols="100" > <?php echo $_POST['NewsText']?> </textarea><br>
 Источник <input type="text" name="NewsSource" value="<?php echo $_POST['NewsSource']?>" size="100"> <br>
 Фото <input type="file" name="PreviewPhoto" accept="image/jpg" value="<?php echo $_POST['PreviewPhoto']?>">  <br>
+Логин <input type="text" name = "username"> <br>
+Пароль <input type="password" name = "password"> <br>
 <input type="submit" name="Submit">
 </form>
 </body>
 <?php
+echo $data2;
 //var_dump($_POST);

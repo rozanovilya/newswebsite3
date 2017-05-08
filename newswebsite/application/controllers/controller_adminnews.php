@@ -11,6 +11,9 @@ class Controller_Adminnews extends Controller
 	}
 	function action_index($id=null)
 	{	
+	//if ($_POST){
+
+
 		$data = $this->menu->getoRubrics();
 		$oNews = New News;
 		if ($id){
@@ -80,8 +83,26 @@ class Controller_Adminnews extends Controller
 
 
 		//var_dump($oNews);
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$oUser = User::getModel($username);
+		if ($oUser == null){
+			$data2 = "Неправильный логин";
+			goto label;
+		}
+		$passwordHash = crypt($_POST['password'], '$2a$07$rozanovilyausessomesillystringforsalt$');
+		if (!hash_equals($passwordHash,$oUser->PasswordHash)){
+			$data2 = "Неправильный пароль";
+			goto label;
+		}
+		if (!$oUser->Journalist){
+			$data2 = "Недостаточно прав";
+			goto label;
+		}
+
 		News::saveModel($oNews);
 		$_FILES = array();
-		$this->view->generate('adminnews_view.php','template_view.php',$data);
+	label:	$this->view->generate('adminnews_view.php','template_view.php',$data,$data2);
 		}
+	//}	
 }

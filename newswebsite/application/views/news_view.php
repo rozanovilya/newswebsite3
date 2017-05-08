@@ -36,10 +36,12 @@ foreach ($comments as $comment)
 $actionlink = "/news/".$data->NewsId;
 ?>
 <h4>Добавить комментарий</h4>
-<form action="<?php $actionlink?>" method="post"> <!don't know how to write action >
+<form action="<?php $actionlink?>" method="post"> 
 Имя пользователя: <input type="text" name="username"> <br>
 Пароль: <input type="password" name="password"> <br>
 Комментарий: <input type = "text" name="commenttext" width="100px" height="60px"> <br>
  <input type="submit" name="Submit">
 
 </form>
+<?php
+echo $data2;

@@ -18,7 +18,7 @@ class Controller_Register extends Controller
 		$data = null;
 		if ($_POST){
 			$UserName = $_POST['username'];
-			$PasswordHash = password_hash($_POST['password'],PASSWORD_DEFAULT);
+			$PasswordHash = crypt($_POST['password'], '$2a$07$rozanovilyausessomesillystringforsalt$'); //password_hash($_POST['password'],PASSWORD_DEFAULT);
 			$oUser = User::getModel($UserName);
 			If ($oUser){
 				$data = "Пользователь с таким логином уже существует!";
